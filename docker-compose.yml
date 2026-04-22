@@ -13,7 +13,7 @@ services:
       - KONG_ADMIN_ERROR_LOG=/dev/stderr
       - KONG_ADMIN_LISTEN=0.0.0.0:8001
     volumes:
-      - ./.kong:/kong/declarative/
+      - ./.kong/kong.yml:/kong/declarative/kong.yml
     ports:
       - "8000:8000"
       - "8001:8001"
@@ -24,8 +24,8 @@ services:
     image: rabbitmq:3-management
     container_name: petshop-rabbitmq
     ports:
-      - "5672:5672" # AMQP port
-      - "15672:15672" # Management UI port
+      - "5672:5672"
+      - "15672:15672"
     networks:
       - petshop-network
 
