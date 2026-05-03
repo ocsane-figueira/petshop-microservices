@@ -139,6 +139,22 @@ Execute os testes usando o seguinte comando:
 ./mvnw clean verify -f [nome-do-servico]/pom.xml
 ```
 
+### ⚠️ Observação para os Testes Locais
+
+Para executar os testes automatizados dos microsserviços **`appointment-service`** e **`registration-service`** localmente (fora do ambiente Docker), é necessário realizar um pequeno ajuste na configuração para que o Quarkus utilize o banco de testes em memória (Testcontainers).
+
+**Passo a passo:**
+
+1. Navegue até o diretório do serviço desejado.
+2. Abra o arquivo de propriedades: `src/main/resources/application.properties`.
+3. Comente a linha de configuração da URL do banco de dados principal (adicionando um `#` no início da linha).
+   > **Exemplo:** Comente a linha `quarkus.datasource.jdbc.url=...` (localizada na linha 5).
+4. Em seguida, execute o comando de verificação na raiz do projeto:
+
+```bash
+./mvnw clean verify -f <nome-do-servico>/pom.xml
+```
+
 ### Como Visualizar os Resultados de Cobertura
 
 Após a execução dos testes, o Quarkus e o Jacoco geram um relatório visual em HTML:
